@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J mpi-program          # Job Name
+#SBATCH -A ACD110018            # Account
+#SBATCH -p ctest               # Partition
+#SBATCH -o odd_even_out.log  # Redirect `stdout` to File
+#SBATCH -e odd_even_err.log  # Redirect `stderr` to File
+
+#SBATCH -n 12     # `--ntasks`, number of tasks / MPI ranks / processes                       $SLURM_NTASKS
+#SBATCH -N 1
+# #%j means job ID
+
+module purge
+module load compiler/intel/2022
+module load IntelMPI/2021.6
+
+export UCX_NET_DEVICES=all  #The UCX config of the module is incorrect!! We have to fix it manually.
+
+time mpirun ./odd_even_sort 536869888 ./sort/hw1/testcases/40.in output.txt
