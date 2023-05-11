@@ -1,6 +1,20 @@
-# MPI-odd-even-merge-sort
+# usage
+### Makefile 
+  compile the program
+### job_script
+  launch slurm job script using sbatch. 
+  command : sbatch job_script
+  note : you can modify the job_script so that it fits your demand
+  
+### print_output.exe
+  use this to print out the output.txt that you get after running odd_even_sort
+  because the output uses MPI data format. 
+  command : print_output.exe output.txt
 
-Note: IntelMPI is used to compile odd_even_sort (see job_script below).
+
+# implementations
+
+Note: IntelMPI is used to compile odd_even_sort 
 
 First, initialize and read three arguments from argv. The first argument is the number of elements, n, to be sorted. The second argument is the input file path, and the third argument is the output path.
 
@@ -24,3 +38,6 @@ Use MPI_Barrier and MPI_Gatherv to collect the sorted data from each process to 
 
 Additional information on merge_func():
 Adopting the concept of merge sort, two pre-sorted data sets, a and b, are read, and a space c is allocated to contain the two data sets. Each time the smaller item from a and b is added to c, and its index is increased until all items from a and b have been added to c. Then, c will be the sorted data.
+
+# Detailed Chinese version Hackmd document
+https://hackmd.io/5WSG_jASSb6XE3R94VA3Vg
